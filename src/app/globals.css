@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Short laptop screens (e.g. 1280×720): closing sections compact so they still fit above the footer. */
+@custom-variant short {
+  @media (width >= 64rem) and (max-height: 47.5rem) {
+    @slot;
   }
 }
 
+@theme inline {
+  --color-sage: #9cbe9c;
+  --color-sage-dark: #6e966e;
+  --color-sage-deep: #3f5a44;
+  --color-mist: #f3f6f3;
+  --color-peach: #e0b096;
+  --color-peach-light: #f8ece4;
+  --color-orange: #ed8d5a;
+  --color-coral: #f28066;
+  --color-ink: #3b3b3b;
+  --color-muted: #777777;
+
+  --font-heading: var(--font-kaushan), cursive;
+  --font-sans: var(--font-shanti), sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+@utility section-y {
+  padding-block: 2.5rem;
+  @media (width >= 64rem) {
+    padding-block: 3.5rem;
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* Closing section of an inner page: on desktop it plus the footer fill exactly one screen.
+   --footer-h is measured live by <FooterHeight />. */
+@utility end-fill {
+  @media (width >= 64rem) {
+    min-height: calc(100svh - var(--footer-h, 15rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Blog article typography */
+.prose-yb {
+  color: var(--color-ink);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose-yb > * + * {
+  margin-top: 1rem;
+}
+.prose-yb h2,
+.prose-yb h3,
+.prose-yb h4 {
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1.75rem;
+}
+.prose-yb h2 {
+  font-size: 1.6rem;
+}
+.prose-yb h3 {
+  font-size: 1.3rem;
+}
+.prose-yb h4 {
+  font-size: 1.1rem;
+}
+.prose-yb a {
+  color: var(--color-sage-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-yb a:hover {
+  color: var(--color-orange);
+}
+.prose-yb ul,
+.prose-yb ol {
+  padding-left: 1.25rem;
+}
+.prose-yb ul {
+  list-style: disc;
+}
+.prose-yb ol {
+  list-style: decimal;
+}
+.prose-yb li::marker {
+  color: var(--color-orange);
+}
+.prose-yb li + li {
+  margin-top: 0.35rem;
+}
+.prose-yb img {
+  max-width: 100%;
+  max-height: 30rem;
+  width: auto;
+  height: auto;
+  margin-inline: auto;
+  border-radius: 0.5rem;
+}
+.prose-yb figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+.prose-yb blockquote {
+  border-left: 4px solid var(--color-peach);
+  background: var(--color-peach-light);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
