@@ -15,7 +15,7 @@ const socials = [
 
 function Card({ icon: Icon, title, children, className = "" }: { icon: typeof Phone; title: string; children: React.ReactNode; className?: string }) {
   return (
-    <div className={`flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ${className}`}>
+    <div className={`flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm compact:py-3 ${className}`}>
       <span className="grid size-10 shrink-0 place-items-center rounded-full bg-orange text-white">
         <Icon className="size-5" />
       </span>
@@ -29,12 +29,12 @@ function Card({ icon: Icon, title, children, className = "" }: { icon: typeof Ph
 
 export default function Contact() {
   return (
-    <section id="contact" className="section-y bg-peach-light">
-      <div className="container-x">
-        <SectionTitle>Contact Us</SectionTitle>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div className="flex flex-col gap-3">
-            <div className="grid gap-3 sm:grid-cols-2">
+    <section id="contact" className="section-y end-fill flex items-center bg-peach-light compact:py-6">
+      <div className="container-x w-full">
+        <SectionTitle className="compact:mb-4 compact:[&_h2]:text-4xl">Contact Us</SectionTitle>
+        <div className="grid gap-4 lg:grid-cols-2 compact:gap-3">
+          <div className="flex flex-col gap-3 compact:gap-2">
+            <div className="grid gap-3 sm:grid-cols-2 compact:gap-2">
               <Card icon={Phone} title="Call / WhatsApp">
                 <a href={contact.phoneHref} className="hover:text-orange">{contact.phone}</a>
               </Card>
@@ -45,7 +45,7 @@ export default function Contact() {
               <Card icon={Clock} title="Opening hours">
                 {contact.hours}
               </Card>
-              <div className="flex items-center justify-between gap-3 rounded-2xl bg-white p-4 shadow-sm">
+              <div className="flex items-center justify-between gap-3 rounded-2xl bg-white p-4 shadow-sm compact:py-3">
                 <p className="text-sm font-bold text-muted">Follow us</p>
                 <div className="flex gap-2">
                   {socials.map(({ href, label, Icon }) => (
@@ -62,7 +62,7 @@ export default function Contact() {
                 </a>
               </Card>
             </div>
-            <div className="flex flex-1 flex-wrap items-center justify-between gap-4 rounded-2xl bg-white p-4 shadow-sm">
+            <div className="flex flex-1 flex-wrap items-center justify-between gap-4 rounded-2xl bg-white p-4 shadow-sm compact:py-3">
               <Button href={contact.whatsapp} variant="orange">
                 <WhatsAppIcon className="size-5" /> Chat on WhatsApp
               </Button>
@@ -76,7 +76,7 @@ export default function Contact() {
             title="Yogmantra Bali location map"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="h-80 w-full rounded-2xl border-0 shadow-sm lg:h-full lg:min-h-96"
+            className="h-80 w-full rounded-2xl border-0 shadow-sm lg:h-full lg:min-h-96 compact:min-h-0"
           />
         </div>
       </div>

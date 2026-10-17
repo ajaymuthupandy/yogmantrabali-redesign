@@ -7,6 +7,13 @@
   }
 }
 
+/* Desktop screens too short for the home Contact section plus the footer (taller than `short`). */
+@custom-variant compact {
+  @media (width >= 64rem) and (max-height: 52.5rem) {
+    @slot;
+  }
+}
+
 @theme inline {
   --color-sage: #9cbe9c;
   --color-sage-dark: #6e966e;
